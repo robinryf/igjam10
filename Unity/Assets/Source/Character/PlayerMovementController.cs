@@ -3,17 +3,10 @@ using System.Collections;
 
 public class PlayerMovementController : MonoBehaviour
 {
-    [HideInInspector]
-    public bool facingRight = true;
-    [HideInInspector]
-    public bool dash = false;
-    public float moveForce = 365f;
+    private bool dash;
     public float maxSpeed = 5f;
-    public float jumpForce = 1000f;
-    public Transform groundCheck;
 
-
-    private bool moving = false;
+    private bool moving;
     private Rigidbody2D rigid;
     public float DashDistance;
 
