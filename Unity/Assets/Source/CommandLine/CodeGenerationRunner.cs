@@ -128,7 +128,7 @@ public class CodeGenerationRunner : MonoBehaviour
                     this.HistoryUi.PrintSuccess(text);
                     this.HistoryUi.PrintSuccess("    Code Accepted");
                     this.SendCorrectHiddenEvent(text);
-                    this.Reset();
+                    this.Reset(false);
                     return;
                 }
             }
@@ -219,12 +219,15 @@ public class CodeGenerationRunner : MonoBehaviour
         this._codeMapping.Remove(code);
     }
 
-    public void Reset()
+    public void Reset(bool resetDifficulty = true)
     {
         this.CmdInputUi.text = string.Empty;
         this.CorrectCodeUi.text = string.Empty;
         this.CmdInputUi.ActivateInputField();
-        this._currentDifficulty = null;
+        if (resetDifficulty)
+        {
+            this._currentDifficulty = null;
+        }
     }
 
     public void FlagNewCode()
