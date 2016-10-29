@@ -16,6 +16,10 @@ public class CodeHistory : MonoBehaviour
 
     public int MaxChildCount;
 
+    public Color SuccessColor;
+    public Color ErrorColor;
+    public Color HintColor;
+
     // Use this for initialization
     void Start()
     {
@@ -60,6 +64,50 @@ public class CodeHistory : MonoBehaviour
         }
     }
 
+    public void PrintSuccess(string text)
+    {
+        this.AddHistory(new Output(text, this.SuccessColor));
+    }
+
+    public void PrintSuccess(string[] texts)
+    {
+        foreach (string text in texts)
+        {
+            this.PrintSuccess(text);
+        }
+    }
+
+    public void PrintError(string text)
+    {
+        this.AddHistory(new Output(text, this.ErrorColor));
+    }
+
+    public void PrintError(string[] texts)
+    {
+        foreach (string text in texts)
+        {
+            this.PrintError(text);
+        }
+    }
+
+    public void PrintHint(string text)
+    {
+        this.AddHistory(new Output(text, this.HintColor));
+    }
+
+    public void PrintHint(string[] texts)
+    {
+        foreach (string text in texts)
+        {
+            this.PrintHint(text);
+        }
+    }
+
+    public bool IsPrinting()
+    {
+        return this.ToAdd.Any();
+    }
+
     public class Output
     {
         public string Text;
@@ -77,10 +125,5 @@ public class CodeHistory : MonoBehaviour
             textObject.text = this.Text;
             textObject.color = this.Color;
         }
-    }
-
-    public bool IsPrinting()
-    {
-        return this.ToAdd.Any();
     }
 }
