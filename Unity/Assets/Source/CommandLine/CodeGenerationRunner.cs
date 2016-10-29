@@ -140,7 +140,7 @@ public class CodeGenerationRunner : MonoBehaviour
                 outputs.Add(error);
             }
             outputs.Add("    Code Denied");
-            this.SendCorrectEvent(text);
+            this.SendWrongEvent(text);
             this.HistoryUi.PrintError(outputs.ToArray());
             this.Reset();
             this.FlagNewCode();
