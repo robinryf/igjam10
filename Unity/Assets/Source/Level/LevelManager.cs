@@ -14,8 +14,6 @@ public class LevelManager : MonoBehaviour
 
     public string[] LevelNames;
 
-    public GameObject PlayerPrefab;
-
     private void Awake()
     {
         Instance = this;
@@ -46,6 +44,5 @@ public class LevelManager : MonoBehaviour
         // setup scene
         Debug.Log("Loaded scenes");
 
-        // spawn player
     }
 }
