@@ -14,6 +14,8 @@ public class CodeGenerationRunner : MonoBehaviour
 
     public bool HaveToSubmit;
 
+    public bool Disabled;
+
     public Text CodeUi;
 
     public Text CorrectCodeUi;
@@ -58,6 +60,8 @@ public class CodeGenerationRunner : MonoBehaviour
 
     public void UpdateCode()
     {
+        if (this.Disabled) return;
+
         if (!this.NewCode || this.HistoryUi.IsPrinting()) return;
 
         this.NewCode = false;
@@ -72,6 +76,8 @@ public class CodeGenerationRunner : MonoBehaviour
 
     public void UpdateInput(string text)
     {
+        if (this.Disabled) return;
+
         if (this.HistoryUi.IsPrinting()) return;
 
         if (this.HaveToSubmit)
@@ -99,6 +105,8 @@ public class CodeGenerationRunner : MonoBehaviour
 
     public void CheckInput()
     {
+        if (this.Disabled) return;
+
         if (this.HistoryUi.IsPrinting()) return;
 
         string text = this.CmdInputUi.text;
@@ -219,11 +227,32 @@ public class CodeGenerationRunner : MonoBehaviour
         this.NewCode = true;
     }
 
-    public CodeGenerator.DifficultyType GetRandomDifficulty()
+    public void Disable(bool reset = false)
     {
-        CodeGenerator.DifficultyType[] values = (CodeGenerator.DifficultyType[])Enum.GetValues(typeof(CodeGenerator.DifficultyType));
-        CodeGenerator.DifficultyType random = (CodeGenerator.DifficultyType)values.GetValue(Random.Range(0, values.Length));
-        return random;
+        this.Disabled = true;
+
+        if (reset)
+        {
+            this.Reset();
+        }
     }
 
+    public void Enable(bool start = false)
+    {
+        this.Disabled = false;
+
+        if (start)
+        {
+            this.FlagNewCode();
+        }
+    }
+
+    public CodeGenerator.DifficultyType GetRandomDifficulty()
+    {
+        CodeGenerator.DifficultyType[] values =
+            (CodeGenerator.DifficultyType[]) Enum.GetValues(typeof(CodeGenerator.DifficultyType));
+        CodeGenerator.DifficultyType random =
+            (CodeGenerator.DifficultyType) values.GetValue(Random.Range(0, values.Length));
+        return random;
+    }
 }
