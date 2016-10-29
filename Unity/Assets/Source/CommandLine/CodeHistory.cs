@@ -8,7 +8,7 @@ public class CodeHistory : MonoBehaviour
 
     public List<GameObject> History;
 
-    private List<Output> ToAdd;
+    private List<Output> ToAdd = new List<Output>();
 
     public GameObject Content;
 
@@ -19,12 +19,6 @@ public class CodeHistory : MonoBehaviour
     public Color SuccessColor;
     public Color ErrorColor;
     public Color HintColor;
-
-    // Use this for initialization
-    void Start()
-    {
-        this.ToAdd = new List<Output>();
-    }
 
     // Update is called once per frame
     void Update()
