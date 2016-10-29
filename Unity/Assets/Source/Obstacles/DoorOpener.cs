@@ -51,6 +51,7 @@ public class DoorOpener : MonoBehaviour
         {
             this.Open();
             this.identifierObject.color = Color.green;
+            return true;
         });
         this.identifierObject.gameObject.SetActive(true);
     }
