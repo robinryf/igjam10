@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraController : MonoBehaviour
 {
     public Camera Camera;
-    public PlayerMovementController Player;
+    private PlayerMovementController player;
 
     public Rect ViewPortRect;
 
@@ -20,6 +20,11 @@ public class CameraController : MonoBehaviour
 
     private bool moving;
 
+    private void Awake()
+    {
+        player = FindObjectOfType<PlayerMovementController>();
+    }
+
     private void Update()
     {
         if (moving)
@@ -29,7 +34,7 @@ public class CameraController : MonoBehaviour
             {
                 cameraTimer = 0;
                 moving = false;
-                Player.Paused = false;
+                player.Paused = false;
             }
 
             var cameraPos = Mathf.Lerp(cameraStartMove, cameraStartMove + CameraMoveDistance, 1 - (cameraTimer / CameraMoveTime));
@@ -51,12 +56,12 @@ public class CameraController : MonoBehaviour
 
         DrawRect(constrainedRect, Color.green);
 
-        var trackingPos = Player.transform.position;
+        var trackingPos = player.transform.position;
         ;
         if (constrainedRect.Contains(trackingPos) == false)
         {
             Debug.Log("Detect out of bounds");
-            Player.Paused = true;
+            player.Paused = true;
             moving = true;
             cameraTimer = CameraMoveTime;
             cameraStartMove = Camera.transform.position.x;
