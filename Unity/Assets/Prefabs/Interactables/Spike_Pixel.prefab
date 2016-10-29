@@ -21,7 +21,6 @@ GameObject:
   - 4: {fileID: 4000012553310600}
   - 212: {fileID: 212000010737616962}
   - 61: {fileID: 61000011502820540}
-  - 114: {fileID: 114000012939134732}
   m_Layer: 0
   m_Name: Spike_Pixel
   m_TagString: Spikes
@@ -56,18 +55,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
---- !u!114 &114000012939134732
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014286816498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a61140be6914f03964d7074d364a07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 20
 --- !u!212 &212000010737616962
 SpriteRenderer:
   m_ObjectHideFlags: 1
