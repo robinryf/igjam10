@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class CodeGenerationRunner : MonoBehaviour
 {
@@ -24,15 +25,15 @@ public class CodeGenerationRunner : MonoBehaviour
 
     private ExceptionGenerator _exceptionGenerator;
 
-    public Color ErrorColor;
+    public Action<string, object> CorrectHiddenEvent;
 
-    public Color CorrectColor;
+    public Action<string, object> CorrectEvent;
 
-    public Action<string> CorrectEvent;
-
-    public Action<string> WrongEvent;
+    public Action<string, object> WrongEvent;
 
     public List<string> HiddenCodes;
+
+    public Dictionary<string, object> CodeMapping;
 
     // Use this for initialization
     void Start()
@@ -54,7 +55,7 @@ public class CodeGenerationRunner : MonoBehaviour
 
         this.NewCode = false;
 
-        string code = _codeGenerator.Generate(CodeGenerator.DifficultyType.HARD);
+        string code = _codeGenerator.Generate(this.GetRandomDifficulty());
         if (Debug)
         {
             UnityEngine.Debug.Log(code);
@@ -105,9 +106,9 @@ public class CodeGenerationRunner : MonoBehaviour
             {
                 if (hiddenCode.Equals(text))
                 {
-                    this.HistoryUi.AddHistory(new CodeHistory.Output(text, this.CorrectColor));
-                    this.HistoryUi.AddHistory(new CodeHistory.Output("    Code Accepted", this.CorrectColor));
-                    this.SendCorrectEvent();
+                    this.HistoryUi.PrintSuccess(text);
+                    this.HistoryUi.PrintSuccess("    Code Accepted");
+                    this.SendCorrectHiddenEvent();
                     this.Reset();
                     return;
                 }
@@ -116,24 +117,24 @@ public class CodeGenerationRunner : MonoBehaviour
 
         if (CodeUi.text.Equals(text))
         {
-            this.HistoryUi.AddHistory(new CodeHistory.Output(this.CodeUi.text, this.CorrectColor));
-            this.HistoryUi.AddHistory(new CodeHistory.Output("    Code Accepted", this.CorrectColor));
+            this.HistoryUi.PrintSuccess(this.CodeUi.text);
+            this.HistoryUi.PrintSuccess("    Code Accepted");
             this.SendCorrectEvent();
             this.Reset();
             this.FlagNewCode();
         }
         else
         {
-            List<CodeHistory.Output> outputs = new List<CodeHistory.Output>();
-            outputs.Add(new CodeHistory.Output(text, this.ErrorColor));
+            List<string> outputs = new List<string>();
+            outputs.Add(text);
 
             foreach (string error in this._exceptionGenerator.Generate().Split('\n').ToList())
             {
-                outputs.Add(new CodeHistory.Output(error, this.ErrorColor));
+                outputs.Add(error);
             }
-            outputs.Add(new CodeHistory.Output("    Code Denied", this.ErrorColor));
+            outputs.Add("    Code Denied");
             this.SendCorrectEvent();
-            this.HistoryUi.AddHistory(outputs.ToArray());
+            this.HistoryUi.PrintError(outputs.ToArray());
             this.Reset();
             this.FlagNewCode();
         }
@@ -143,7 +144,19 @@ public class CodeGenerationRunner : MonoBehaviour
     {
         if (CorrectEvent != null)
         {
-            CorrectEvent(this.CodeUi.text);
+            object reference = null;
+            this.CodeMapping.TryGetValue(this.CodeUi.text, out reference);
+            CorrectEvent(this.CodeUi.text, reference);
+        }
+    }
+
+    protected void SendCorrectHiddenEvent()
+    {
+        if (CorrectEvent != null)
+        {
+            object reference = null;
+            this.CodeMapping.TryGetValue(this.CodeUi.text, out reference);
+            CorrectEvent(this.CodeUi.text, reference);
         }
     }
 
@@ -151,8 +164,25 @@ public class CodeGenerationRunner : MonoBehaviour
     {
         if (WrongEvent != null)
         {
-            WrongEvent(this.CodeUi.text);
+            object reference = null;
+            this.CodeMapping.TryGetValue(this.CodeUi.text, out reference);
+            WrongEvent(this.CodeUi.text, reference);
         }
+    }
+
+    public void AddHiddenCode(string code, object reference = null)
+    {
+        this.HiddenCodes.Add(code);
+
+        if (reference == null) return;
+
+        this.CodeMapping.Add(code, reference);
+    }
+
+    public void RemoveHiddenCode(string code)
+    {
+        this.HiddenCodes.Remove(code);
+        this.CodeMapping.Remove(code);
     }
 
     public void Reset()
@@ -165,6 +195,13 @@ public class CodeGenerationRunner : MonoBehaviour
     public void FlagNewCode()
     {
         this.NewCode = true;
+    }
+
+    public CodeGenerator.DifficultyType GetRandomDifficulty()
+    {
+        CodeGenerator.DifficultyType[] values = (CodeGenerator.DifficultyType[])Enum.GetValues(typeof(CodeGenerator.DifficultyType));
+        CodeGenerator.DifficultyType random = (CodeGenerator.DifficultyType)values.GetValue(Random.Range(0, values.Length));
+        return random;
     }
 
 }
