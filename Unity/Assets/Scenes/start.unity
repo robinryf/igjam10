@@ -120,6 +120,10 @@ MonoBehaviour:
   LevelNames:
   - 001
   - 002
+  - 003
+  - 004
+  - 005
+  - 006
 --- !u!4 &148504541
 Transform:
   m_ObjectHideFlags: 0
