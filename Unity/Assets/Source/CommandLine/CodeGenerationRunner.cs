@@ -27,12 +27,13 @@ public class CodeGenerationRunner : MonoBehaviour
     public Color ErrorColor;
 
     public Color CorrectColor;
+    public Action<string, object> CorrectEvent;
 
-    public Action<string> CorrectEvent;
-
-    public Action<string> WrongEvent;
+    public Action<string, object> WrongEvent;
 
     public List<string> HiddenCodes;
+
+    public Dictionary<string, object> CodeMapping;
 
     // Use this for initialization
     void Start()
@@ -143,7 +144,9 @@ public class CodeGenerationRunner : MonoBehaviour
     {
         if (CorrectEvent != null)
         {
-            CorrectEvent(this.CodeUi.text);
+            object reference = null;
+            this.CodeMapping.TryGetValue(this.CodeUi.text, out reference);
+            CorrectEvent(this.CodeUi.text, reference);
         }
     }
 
@@ -151,7 +154,9 @@ public class CodeGenerationRunner : MonoBehaviour
     {
         if (WrongEvent != null)
         {
-            WrongEvent(this.CodeUi.text);
+            object reference = null;
+            this.CodeMapping.TryGetValue(this.CodeUi.text, out reference);
+            WrongEvent(this.CodeUi.text, reference);
         }
     }
 
