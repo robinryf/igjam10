@@ -21,6 +21,12 @@ public class TimeHealthBar : MonoBehaviour {
 
     private float timeLeft;
 
+    public static TimeHealthBar Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
 	void Start ()
 	{
@@ -30,6 +36,11 @@ public class TimeHealthBar : MonoBehaviour {
 		sliderFillImage.color = normalColor;
 		timeHealthSlider.value = startingTimeHealth;
 	}
+
+    private void OnDestroy()
+    {
+        
+    }
 		
 	void Update () {
 		if (damaged) {
