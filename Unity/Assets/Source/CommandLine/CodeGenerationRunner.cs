@@ -38,7 +38,7 @@ public class CodeGenerationRunner : MonoBehaviour
 
     public List<string> HiddenCodes;
 
-    private Dictionary<string, Action<string>> _codeMapping = new Dictionary<string, Action<string>>();
+    private Dictionary<string, Func<string, bool>> _codeMapping = new Dictionary<string, Func<string, bool>>();
 
     private CodeGenerator.DifficultyType? _currentDifficulty;
 
@@ -165,7 +165,7 @@ public class CodeGenerationRunner : MonoBehaviour
 
     protected void SendCorrectEvent(string code, CodeGenerator.DifficultyType difficulty)
     {
-        Action<string> reference = null;
+        Func<string, bool> reference = null;
         this._codeMapping.TryGetValue(code, out reference);
         if (reference != null)
         {
@@ -180,7 +180,7 @@ public class CodeGenerationRunner : MonoBehaviour
 
     protected void SendCorrectHiddenEvent(string code)
     {
-        Action<string> reference = null;
+        Func<string, bool> reference = null;
         this._codeMapping.TryGetValue(code, out reference);
         if (reference != null)
         {
@@ -195,12 +195,7 @@ public class CodeGenerationRunner : MonoBehaviour
 
     protected void SendWrongEvent(string code, CodeGenerator.DifficultyType difficulty)
     {
-        Action<string> reference = null;
-        this._codeMapping.TryGetValue(code, out reference);
-        if (reference != null)
-        {
-            reference(code);
-        }
+        this.HandleCallback(code);
 
         if (WrongEvent != null)
         {
@@ -208,7 +203,19 @@ public class CodeGenerationRunner : MonoBehaviour
         }
     }
 
-    public void AddHiddenCode(string code, Action<string> reference = null)
+    protected void HandleCallback(string code)
+    {
+        Func<string, bool> reference = null;
+        this._codeMapping.TryGetValue(code, out reference);
+        if (reference == null) return;
+
+        if (reference(code))
+        {
+            this.RemoveHiddenCode(code);
+        }
+    }
+
+    public void AddHiddenCode(string code, Func<string, bool> reference = null)
     {
         this.HiddenCodes.Add(code);
 
