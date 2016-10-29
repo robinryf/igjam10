@@ -416,6 +416,7 @@ MonoBehaviour:
   NewCode: 0
   ErrorColor: {r: 1, g: 0.284, b: 0.178, a: 1}
   CorrectColor: {r: 0.34449795, g: 0.875, b: 0.09007351, a: 1}
+  HiddenCodes: []
 --- !u!114 &114000012143008382
 MonoBehaviour:
   m_ObjectHideFlags: 1

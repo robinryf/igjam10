@@ -32,6 +32,8 @@ public class CodeGenerationRunner : MonoBehaviour
 
     public Action<string> WrongEvent;
 
+    public List<string> HiddenCodes;
+
     // Use this for initialization
     void Start()
     {
@@ -97,12 +99,28 @@ public class CodeGenerationRunner : MonoBehaviour
             UnityEngine.Debug.Log(text);
         }
 
+        if (this.HaveToSubmit)
+        {
+            foreach (string hiddenCode in this.HiddenCodes)
+            {
+                if (hiddenCode.Equals(text))
+                {
+                    this.HistoryUi.AddHistory(new CodeHistory.Output(text, this.CorrectColor));
+                    this.HistoryUi.AddHistory(new CodeHistory.Output("    Code Accepted", this.CorrectColor));
+                    this.SendCorrectEvent();
+                    this.Reset();
+                    return;
+                }
+            }
+        }
+
         if (CodeUi.text.Equals(text))
         {
             this.HistoryUi.AddHistory(new CodeHistory.Output(this.CodeUi.text, this.CorrectColor));
             this.HistoryUi.AddHistory(new CodeHistory.Output("    Code Accepted", this.CorrectColor));
             this.SendCorrectEvent();
             this.Reset();
+            this.FlagNewCode();
         }
         else
         {
@@ -117,8 +135,8 @@ public class CodeGenerationRunner : MonoBehaviour
             this.SendCorrectEvent();
             this.HistoryUi.AddHistory(outputs.ToArray());
             this.Reset();
+            this.FlagNewCode();
         }
-        this.CmdInputUi.ActivateInputField();
     }
 
     protected void SendCorrectEvent()
@@ -139,9 +157,14 @@ public class CodeGenerationRunner : MonoBehaviour
 
     public void Reset()
     {
-        this.NewCode = true;
         this.CmdInputUi.text = string.Empty;
         this.CorrectCodeUi.text = string.Empty;
+        this.CmdInputUi.ActivateInputField();
+    }
+
+    public void FlagNewCode()
+    {
+        this.NewCode = true;
     }
 
 }
