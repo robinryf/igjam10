@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efe358bdeada4c1297a704d15e523af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openingSize: 0.5
+  openingSize: 1
   openingTime: 10
   identifierObject: {fileID: 114000013067438792}
   identifier: 
