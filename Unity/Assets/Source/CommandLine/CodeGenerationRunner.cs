@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 
 public class CodeGenerationRunner : MonoBehaviour
 {
+    public static CodeGenerationRunner Instance { get; private set; }
+
     public bool Debug;
 
     public bool HaveToSubmit;
@@ -35,6 +37,11 @@ public class CodeGenerationRunner : MonoBehaviour
     public List<string> HiddenCodes;
 
     private Dictionary<string, Action<string>> _codeMapping = new Dictionary<string, Action<string>>();
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     // Use this for initialization
     void Start()
