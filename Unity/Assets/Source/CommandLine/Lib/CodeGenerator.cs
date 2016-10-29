@@ -10,8 +10,8 @@ public class CodeGenerator
         EASY, MEDIUM, HARD
     }
 
-    private string[] commands = new string[] { "hack", "code", "command", "sudo make" };
-    private string[] objects = new string[] { "the matrix", "this game", "the world", "world", "humans", "chuck norris", "me" };
+    private string[] commands = new string[] { "hack", "code", "command", "sudo make", "call" };
+    private string[] objects = new string[] { "matrix", "game", "world", "humans", "chuck norris", "me" };
     private string[] values = new string[] { "--times 2", "--1337", "42", "a sandwich" };
 
     public string[] Commands
