@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerMovementController : MonoBehaviour
 {
+    public int DashCount;
+
     private bool dash;
     public float maxSpeed = 5f;
 
@@ -11,6 +13,11 @@ public class PlayerMovementController : MonoBehaviour
     public float DashDistance;
     public bool Paused;
 
+    public float DashCooldownTime = 3f;
+
+    public int DashLimit = 1;
+
+    private float dashCooldown;
 
     // Use this for initialization
     void Awake()
@@ -26,10 +33,23 @@ public class PlayerMovementController : MonoBehaviour
             return;
         }
 
+        if (DashCount < DashLimit)
+        {
+            dashCooldown -= Time.deltaTime;
+        }
+
+        if (dashCooldown <= 0)
+        {
+            dashCooldown = DashCooldownTime;
+            DashCount++;
+            Debug.Log("Got dash;");
+        }
+
         moving = rigid.velocity.Equals(Vector2.zero) == false;
         
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0)) && moving)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0)) && moving && DashCount > 0)
         {
+            DashCount--;
             dash = true;
         }
     }
