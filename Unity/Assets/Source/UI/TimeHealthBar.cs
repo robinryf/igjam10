@@ -146,7 +146,7 @@ public class TimeHealthBar : MonoBehaviour
 
     void ModifyTimeHealth(float amount)
     {
-        timeLeft += amount;
+        timeLeft = Math.Min(timeLeft + amount, startingTimeHealth);
         DrawTime();
     }
 
