@@ -5,15 +5,13 @@ public class SpikeDamage : MonoBehaviour {
 
 	public int damage = 20;
 	TimeHealthBar timeHealthBar;
-	GameObject player;
 
 	void Start () {
-		player = GameObject.FindGameObjectWithTag ("Player");
-		timeHealthBar = player.GetComponent<TimeHealthBar>();
+		timeHealthBar = gameObject.GetComponent<TimeHealthBar>();
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.gameObject == player)
+		if (other.transform.parent.gameObject.tag.Contains("Spike"))
 		{
 			timeHealthBar.RemoveTimeHealth(damage);
 		}
