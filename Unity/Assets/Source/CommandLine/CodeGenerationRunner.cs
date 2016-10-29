@@ -71,6 +71,10 @@ public class CodeGenerationRunner : MonoBehaviour
 
         this._currentDifficulty = this.GetRandomDifficulty();
         string code = _codeGenerator.Generate(this._currentDifficulty.Value);
+        while (code.Length > 25)
+        {
+            code = _codeGenerator.Generate(this._currentDifficulty.Value);
+        }
         if (Debug)
         {
             UnityEngine.Debug.Log(code);
