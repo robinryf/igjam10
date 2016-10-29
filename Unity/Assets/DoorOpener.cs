@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DoorController : MonoBehaviour {
+public class DoorOpener : MonoBehaviour {
 	private GameObject left;
 	private GameObject right;
 	private Quaternion rotation;
 	private bool opened;
+	public float openingSize = 2;
+	public float openingTime = 1;
 
 	void Start () {
 		rotation = gameObject.transform.rotation;
@@ -28,9 +30,9 @@ public class DoorController : MonoBehaviour {
 		if (!opened) {
 			Vector2 baseLine = new Vector2(1, 0);
 			Vector2 direction = (rotation * baseLine).normalized;
-			Vector2 leftEndPosition = (Vector2)left.transform.position - direction;
-			Vector2 rightEndPosition = (Vector2)right.transform.position + direction;
-			StartCoroutine(OpenDoors (leftEndPosition, rightEndPosition, 2));
+			Vector2 leftEndPosition = (Vector2)left.transform.position - direction * openingSize;
+			Vector2 rightEndPosition = (Vector2)right.transform.position + direction * openingSize;
+			StartCoroutine(OpenDoors (leftEndPosition, rightEndPosition, openingTime));
 			opened = true;
 		}
 	}
