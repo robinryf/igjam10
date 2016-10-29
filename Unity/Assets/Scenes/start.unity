@@ -120,7 +120,8 @@ MonoBehaviour:
   LevelNames:
   - 001
   - 002
-  PlayerPrefab: {fileID: 0}
+  PlayerPrefab: {fileID: 1000011130483722, guid: 61097f37774c69a42b4dc4a57165bd56,
+    type: 2}
 --- !u!4 &148504541
 Transform:
   m_ObjectHideFlags: 0
