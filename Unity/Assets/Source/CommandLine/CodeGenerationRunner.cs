@@ -107,8 +107,8 @@ public class CodeGenerationRunner : MonoBehaviour
             {
                 if (hiddenCode.Equals(text))
                 {
-                    this.HistoryUi.AddHistory(new CodeHistory.Output(text, this.CorrectColor));
-                    this.HistoryUi.AddHistory(new CodeHistory.Output("    Code Accepted", this.CorrectColor));
+                    this.HistoryUi.PrintSuccess(text);
+                    this.HistoryUi.PrintSuccess("    Code Accepted");
                     this.SendCorrectHiddenEvent();
                     this.Reset();
                     return;
@@ -118,24 +118,24 @@ public class CodeGenerationRunner : MonoBehaviour
 
         if (CodeUi.text.Equals(text))
         {
-            this.HistoryUi.AddHistory(new CodeHistory.Output(this.CodeUi.text, this.CorrectColor));
-            this.HistoryUi.AddHistory(new CodeHistory.Output("    Code Accepted", this.CorrectColor));
+            this.HistoryUi.PrintSuccess(this.CodeUi.text);
+            this.HistoryUi.PrintSuccess("    Code Accepted");
             this.SendCorrectEvent();
             this.Reset();
             this.FlagNewCode();
         }
         else
         {
-            List<CodeHistory.Output> outputs = new List<CodeHistory.Output>();
-            outputs.Add(new CodeHistory.Output(text, this.ErrorColor));
+            List<string> outputs = new List<string>();
+            outputs.Add(text);
 
             foreach (string error in this._exceptionGenerator.Generate().Split('\n').ToList())
             {
-                outputs.Add(new CodeHistory.Output(error, this.ErrorColor));
+                outputs.Add(error);
             }
-            outputs.Add(new CodeHistory.Output("    Code Denied", this.ErrorColor));
+            outputs.Add("    Code Denied");
             this.SendCorrectEvent();
-            this.HistoryUi.AddHistory(outputs.ToArray());
+            this.HistoryUi.PrintError(outputs.ToArray());
             this.Reset();
             this.FlagNewCode();
         }
