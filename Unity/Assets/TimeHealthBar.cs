@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class TimeHealthBar : MonoBehaviour {
 
 	public int startingTimeHealth = 100;
-	//public int currentTimeHealth;
 	public Slider timeHealthSlider;
 	public Image sliderFillImage;
 	public Color damagedColor = new Color (1f, 1f, 0);
@@ -19,15 +18,13 @@ public class TimeHealthBar : MonoBehaviour {
 	bool healing = false;
 
 
-	// Use this for initialization
 	void Start () {
 		timeHealthSlider.minValue = 0f;
 		timeHealthSlider.maxValue = startingTimeHealth;
 		sliderFillImage.color = normalColor;
 		timeHealthSlider.value = startingTimeHealth;
 	}
-
-	// Update is called once per frame
+		
 	void Update () {
 		if (damaged) {
 			sliderFillImage.color = damagedColor;
