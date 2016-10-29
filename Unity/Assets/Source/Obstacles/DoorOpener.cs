@@ -50,7 +50,8 @@ public class DoorOpener : MonoBehaviour
         CodeGenerationRunner.Instance.AddHiddenCode("open " + this.identifier, delegate (string s)
         {
             this.Open();
-            this.identifierObject.color = Color.green;
+            //this.identifierObject.color = Color.green;
+            this.identifierObject.gameObject.SetActive(false);
             return true;
         });
         this.identifierObject.gameObject.SetActive(true);
