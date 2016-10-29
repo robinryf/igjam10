@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class CodeGenerationRunner : MonoBehaviour
 {
@@ -56,7 +57,7 @@ public class CodeGenerationRunner : MonoBehaviour
 
         this.NewCode = false;
 
-        string code = _codeGenerator.Generate(CodeGenerator.DifficultyType.HARD);
+        string code = _codeGenerator.Generate(this.GetRandomDifficulty());
         if (Debug)
         {
             UnityEngine.Debug.Log(code);
@@ -196,6 +197,13 @@ public class CodeGenerationRunner : MonoBehaviour
     public void FlagNewCode()
     {
         this.NewCode = true;
+    }
+
+    public CodeGenerator.DifficultyType GetRandomDifficulty()
+    {
+        CodeGenerator.DifficultyType[] values = (CodeGenerator.DifficultyType[])Enum.GetValues(typeof(CodeGenerator.DifficultyType));
+        CodeGenerator.DifficultyType random = (CodeGenerator.DifficultyType)values.GetValue(Random.Range(0, values.Length));
+        return random;
     }
 
 }
