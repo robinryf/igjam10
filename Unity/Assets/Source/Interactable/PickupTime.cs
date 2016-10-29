@@ -15,7 +15,7 @@ public class PickupTime : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject == player) {
 			timeHealthBar.AddTimeHealth(bonus);
-			gameObject.active = false;
+			gameObject.SetActive(false);
 		}
 	}
 }

@@ -3,17 +3,31 @@ using System.Collections;
 
 public class PlayerSpikeController : MonoBehaviour {
 
-	public int damage = 20;
-	TimeHealthBar timeHealthBar;
+	private Rigidbody2D rigid;
+	public float force;
 
 	void Start () {
-		timeHealthBar = gameObject.GetComponent<TimeHealthBar>();
+		rigid = gameObject.GetComponent<Rigidbody2D> ();
 	}
 
-	void OnTriggerEnter2D(Collider2D other) {
-		if (other.tag == "Spikes" || other.transform.parent.gameObject.tag == "Spikes")
-		{
-			timeHealthBar.RemoveTimeHealth(damage);
+	void OnCollisionEnter2D(Collision2D other) {
+		if (other.gameObject.tag == "Spikes" || other.transform.parent.gameObject.tag == "Spikes") {
+			Vector2 inverseVelocity = other.relativeVelocity * -1;
+			rigid.AddForce(inverseVelocity * force);
 		}
 	}
+
+// Below is code for removing health with trigger instead of bouncing back using collider.
+
+//	void OnTriggerEnter2D(Collision2D other) {
+//		if (other.tag == "Spikes" || other.transform.parent.gameObject.tag == "Spikes") {
+//			Debug.Log ("knocking player back");
+//			RemoveHealth (20);
+//		}
+//	}
+
+//	void RemoveHealth(int damage) {
+//		TimeHealthBar timeHealthBar = gameObject.GetComponent<TimeHealthBar>();
+//		timeHealthBar.RemoveTimeHealth(damage);
+//	}
 }

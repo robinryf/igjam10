@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 29/10/2016 10:21:15-->
+<!--Last exported: 29/10/2016 16:55:54-->
 <Tiled2Unity version="1.0.7.10">
   <AssignMaterial mesh="mesh_0001" material="scifi_platformTiles_32x32-1" />
   <AssignMaterial mesh="mesh_0002" material="scifi_platformTiles_32x32-1" />
   <AssignMaterial mesh="mesh_0003" material="scifi_platformTiles_32x32-1" />
   <AssignMaterial mesh="mesh_0004" material="Spike_Pixel" />
-  <Prefab name="TestLevel01" orientation="Orthogonal" staggerAxis="Y" staggerIndex="Odd" hexSideLength="0" numLayers="4" numTilesWide="100" numTilesHigh="20" tileWidth="32" tileHeight="32" exportScale="0.01" mapWidthInPixels="3200" mapHeightInPixels="640">
+  <Prefab name="TestLevel01" orientation="Orthogonal" staggerAxis="Y" staggerIndex="Odd" hexSideLength="0" numLayers="5" numTilesWide="100" numTilesHigh="20" tileWidth="32" tileHeight="32" exportScale="0.01" mapWidthInPixels="3200" mapHeightInPixels="640">
     <GameObject name="Background" x="0" y="0" z="0">
       <GameObject name="scifi_platformTiles_32x32-1" copy="mesh_0001" sortingLayerName="" sortingOrder="0" opacity="1" />
     </GameObject>
@@ -173,7 +173,7 @@
         </PolygonCollider2D>
       </GameObject>
     </GameObject>
-    <GameObject name="Spikes" x="0" y="0" z="0" isTrigger="true" layer="Spikes">
+    <GameObject name="Spikes" x="0" y="0" z="0" isTrigger="false" layer="Spikes" tag="Spikes">
       <GameObject name="Spike_Pixel" copy="mesh_0004" sortingLayerName="" sortingOrder="3" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
