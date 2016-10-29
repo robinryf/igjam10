@@ -25,10 +25,8 @@ public class CodeGenerationRunner : MonoBehaviour
 
     private ExceptionGenerator _exceptionGenerator;
 
-    public Color ErrorColor;
     public Action<string, object> CorrectHiddenEvent;
 
-    public Color CorrectColor;
     public Action<string, object> CorrectEvent;
 
     public Action<string, object> WrongEvent;
