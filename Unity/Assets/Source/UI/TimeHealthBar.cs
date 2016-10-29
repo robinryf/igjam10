@@ -48,7 +48,9 @@ public class TimeHealthBar : MonoBehaviour
             return;
         }
 
-        AddTimeHealth(AddTimeOnCorrectCode * ((int)difficulty + 1));
+        float amount = AddTimeOnCorrectCode * ((int)difficulty + 1);
+        Debug.Log(amount);
+        AddTimeHealth(amount);
     }
 
     private void OnDestroy()
