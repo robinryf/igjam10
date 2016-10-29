@@ -25,6 +25,7 @@ public class CodeGenerationRunner : MonoBehaviour
     private ExceptionGenerator _exceptionGenerator;
 
     public Color ErrorColor;
+    public Action<string, object> CorrectHiddenEvent;
 
     public Color CorrectColor;
     public Action<string, object> CorrectEvent;
@@ -108,7 +109,7 @@ public class CodeGenerationRunner : MonoBehaviour
                 {
                     this.HistoryUi.AddHistory(new CodeHistory.Output(text, this.CorrectColor));
                     this.HistoryUi.AddHistory(new CodeHistory.Output("    Code Accepted", this.CorrectColor));
-                    this.SendCorrectEvent();
+                    this.SendCorrectHiddenEvent();
                     this.Reset();
                     return;
                 }
@@ -141,6 +142,16 @@ public class CodeGenerationRunner : MonoBehaviour
     }
 
     protected void SendCorrectEvent()
+    {
+        if (CorrectEvent != null)
+        {
+            object reference = null;
+            this.CodeMapping.TryGetValue(this.CodeUi.text, out reference);
+            CorrectEvent(this.CodeUi.text, reference);
+        }
+    }
+
+    protected void SendCorrectHiddenEvent()
     {
         if (CorrectEvent != null)
         {
