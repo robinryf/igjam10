@@ -283,6 +283,22 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &617833215 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010560720654, guid: cb90c423b808443448f091333a37de1a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1926655447}
+--- !u!114 &617833216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 617833215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb3e7b3121d54461bc78e92f84df95e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &746669144
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +485,7 @@ GameObject:
   - 114: {fileID: 911798485}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -951,6 +967,11 @@ Prefab:
     - target: {fileID: 4000011287309366, guid: cb90c423b808443448f091333a37de1a, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010911832742, guid: cb90c423b808443448f091333a37de1a,
+        type: 2}
+      propertyPath: ExportScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb90c423b808443448f091333a37de1a, type: 2}
