@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerStaticSpikeController : MonoBehaviour {
+public class PlayerSpikeController : MonoBehaviour {
 
 	public int damage = 20;
 	TimeHealthBar timeHealthBar;
