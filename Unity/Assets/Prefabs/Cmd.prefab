@@ -188,6 +188,7 @@ GameObject:
   - 224: {fileID: 224000012080459602}
   - 114: {fileID: 114000010912600942}
   - 114: {fileID: 114000013051529932}
+  - 114: {fileID: 114000014189840650}
   m_Layer: 0
   m_Name: RealContent
   m_TagString: Untagged
@@ -600,6 +601,24 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: hack the matrix
+--- !u!114 &114000014189840650
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013300962278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1679637790, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 281
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
 --- !u!114 &114000014252737026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -746,7 +765,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -140.5, y: -498.92}
+  m_AnchoredPosition: {x: -140.5, y: -499}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!224 &224000012189386438
