@@ -16,6 +16,7 @@ public class TimeHealthBar : MonoBehaviour {
 	public float criticalThreshold = 30;
 	public float flashSpeed;
 	public float dyingRate = 1;
+    public float AddTimeOnCorrectCode = 20;
 	bool damaged = false;
 	bool healing = false;
 
@@ -30,6 +31,7 @@ public class TimeHealthBar : MonoBehaviour {
 
 	void Start ()
 	{
+        CodeGenerationRunner.Instance.CorrectEvent += OnCorrectCodeEntred;
 	    timeLeft = startingTimeHealth;
 		timeHealthSlider.minValue = 0f;
 		timeHealthSlider.maxValue = startingTimeHealth;
@@ -37,9 +39,14 @@ public class TimeHealthBar : MonoBehaviour {
 		timeHealthSlider.value = startingTimeHealth;
 	}
 
+    private void OnCorrectCodeEntred(string s)
+    {
+        AddTimeHealth(AddTimeOnCorrectCode);
+    }
+
     private void OnDestroy()
     {
-        
+        CodeGenerationRunner.Instance.CorrectEvent -= OnCorrectCodeEntred;
     }
 		
 	void Update () {
