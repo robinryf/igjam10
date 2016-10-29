@@ -619,7 +619,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: hack the matrix
+  m_Text: 
 --- !u!114 &114000014189840650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -726,10 +726,10 @@ RectTransform:
   - {fileID: 224000013124269494}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 416, y: 0}
+  m_SizeDelta: {x: 416, y: 1080}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224000011665926248
 RectTransform:

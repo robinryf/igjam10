@@ -51,6 +51,7 @@ public class CodeGenerationRunner : MonoBehaviour
     void Start()
     {
         EventSystem.current.SetSelectedGameObject(CmdInputUi.gameObject);
+        this.Enable(true);
     }
 
     // Update is called once per frame
