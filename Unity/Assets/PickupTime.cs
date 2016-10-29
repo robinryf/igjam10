@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpikeDamage : MonoBehaviour {
+public class PickupTime : MonoBehaviour {
 
-	public int damage = 20;
+	public int bonus = 50;
 	TimeHealthBar timeHealthBar;
 	GameObject player;
 
@@ -13,9 +13,9 @@ public class SpikeDamage : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.gameObject == player)
-		{
-			timeHealthBar.RemoveTimeHealth(damage);
+		if (other.gameObject == player) {
+			timeHealthBar.AddTimeHealth(bonus);
+			gameObject.active = false;
 		}
 	}
 }
