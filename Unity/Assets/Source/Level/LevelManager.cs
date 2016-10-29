@@ -43,6 +43,19 @@ public class LevelManager : MonoBehaviour
     {
         // setup scene
         Debug.Log("Loaded scenes");
+        
+    }
 
+    public void GameOver()
+    {
+        var player = FindObjectOfType<PlayerMovementController>();
+        player.Paused = true;
+        player.rigid.velocity = Vector2.zero;
+        GameOverScreen.Instance.gameObject.SetActive(true);
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(LevelNames[currentLevelIndex]);
     }
 }

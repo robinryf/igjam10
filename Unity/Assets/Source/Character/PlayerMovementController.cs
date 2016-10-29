@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerMovementController : MonoBehaviour
@@ -9,7 +10,8 @@ public class PlayerMovementController : MonoBehaviour
     public float maxSpeed = 5f;
 
     private bool moving;
-    private Rigidbody2D rigid;
+    [NonSerialized]
+    public Rigidbody2D rigid;
     public float DashDistance;
     public bool Paused;
 

@@ -1,24 +1,30 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
 public class TimeHealthBar : MonoBehaviour {
 
-	public int startingTimeHealth = 100;
+	public float startingTimeHealth = 100;
 	public Slider timeHealthSlider;
 	public Image sliderFillImage;
 	public Color damagedColor = new Color (1f, 1f, 0);
 	public Color healColor = new Color (0, 0, 1f);
 	public Color normalColor = new Color(0, 1f, 0);
 	public Color criticalColor = new Color(1f, 0, 0);
-	public int criticalThreshold = 30;
+    public Text TimeDigitsText;
+	public float criticalThreshold = 30;
 	public float flashSpeed;
-	public int dyingRate = 1;
+	public float dyingRate = 1;
 	bool damaged = false;
 	bool healing = false;
 
+    private float timeLeft;
 
-	void Start () {
+
+	void Start ()
+	{
+	    timeLeft = startingTimeHealth;
 		timeHealthSlider.minValue = 0f;
 		timeHealthSlider.maxValue = startingTimeHealth;
 		sliderFillImage.color = normalColor;
@@ -36,8 +42,19 @@ public class TimeHealthBar : MonoBehaviour {
 		DecrementTimeHealth ();
 	}
 
+    private void DrawTime()
+    {
+        if (timeLeft < 0)
+        {
+            timeLeft = 0;
+        }
+        timeHealthSlider.value = timeLeft;
+        var ts = TimeSpan.FromSeconds(timeLeft);
+        TimeDigitsText.text = string.Format("{0}:{1}", ts.TotalSeconds, ts.Milliseconds);
+    }
+
 	void ShowStableColor() {
-		if (timeHealthSlider.value < criticalThreshold) {
+		if (timeLeft < criticalThreshold) {
 			TransitionSliderBackgroundColor (criticalColor);
 		} else {
 			TransitionSliderBackgroundColor (normalColor);
@@ -48,35 +65,38 @@ public class TimeHealthBar : MonoBehaviour {
 		sliderFillImage.color = Color.Lerp (sliderFillImage.color, color, flashSpeed * Time.deltaTime);
 	}
 
-	public void AddTimeHealth(int amount) {
+	public void AddTimeHealth(float amount) {
 		healing = true;
 		ModifyTimeHealth (amount);
 		healing = false;
 	}
 
-	public void RemoveTimeHealth(int amount) {
+	public void RemoveTimeHealth(float amount) {
 		damaged = true;
 		ModifyTimeHealth(-amount);
 		CheckIfDead ();
 		damaged = false;
 	}
 
-	void ModifyTimeHealth(int amount) {
-		timeHealthSlider.value += amount;
+	void ModifyTimeHealth(float amount)
+	{
+	    timeLeft += amount;
+        DrawTime();
 	}
 
 	void CheckIfDead() {
-		if (timeHealthSlider.value <= 0) {
+		if (timeLeft <= 0) {
 			Death ();
 		}
 	}
 
-	void Death() {
-		Debug.Log ("Oh no, you are dead!");
+	void Death()
+	{
+	    LevelManager.Instance.GameOver();
 	}
 
 	void DecrementTimeHealth() {
-		timeHealthSlider.value -= dyingRate * Time.deltaTime;
-		CheckIfDead ();	
+		ModifyTimeHealth(dyingRate * Time.deltaTime * (-1));
+		CheckIfDead ();
 	}
 }
