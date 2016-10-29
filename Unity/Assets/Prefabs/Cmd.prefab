@@ -414,8 +414,6 @@ MonoBehaviour:
   HistoryUi: {fileID: 114000013555374198}
   CmdInputUi: {fileID: 114000012143008382}
   NewCode: 0
-  ErrorColor: {r: 1, g: 0.284, b: 0.178, a: 1}
-  CorrectColor: {r: 0.34449795, g: 0.875, b: 0.09007351, a: 1}
   HiddenCodes:
   - open door
 --- !u!114 &114000012143008382
@@ -584,7 +582,10 @@ MonoBehaviour:
   History: []
   Content: {fileID: 1000013300962278}
   InputText: {fileID: 114000010074903504}
-  MaxChildCount: 30
+  MaxChildCount: 45
+  SuccessColor: {r: 0.34117648, g: 0.8745098, b: 0.08627451, a: 1}
+  ErrorColor: {r: 1, g: 0.28235295, b: 0.1764706, a: 1}
+  HintColor: {r: 0.9044118, g: 0.8447903, b: 0.039900504, a: 1}
 --- !u!114 &114000013593440588
 MonoBehaviour:
   m_ObjectHideFlags: 1
