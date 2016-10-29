@@ -13,11 +13,15 @@ public class PlayerMovementController : MonoBehaviour
     public float DashDistance;
     public bool Paused;
 
+    public float DashCooldownTime = 3f;
+
+    public int DashLimit = 1;
+
+    private float dashCooldown;
 
     // Use this for initialization
     void Awake()
     {
-        DashCount = 1;
         rigid = GetComponent<Rigidbody2D>();
     }
 
@@ -27,6 +31,18 @@ public class PlayerMovementController : MonoBehaviour
         if (Paused)
         {
             return;
+        }
+
+        if (DashCount < DashLimit)
+        {
+            dashCooldown -= Time.deltaTime;
+        }
+
+        if (dashCooldown <= 0)
+        {
+            dashCooldown = DashCooldownTime;
+            DashCount++;
+            Debug.Log("Got dash;");
         }
 
         moving = rigid.velocity.Equals(Vector2.zero) == false;
