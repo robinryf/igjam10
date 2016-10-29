@@ -45,7 +45,8 @@ public class DoorOpener : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        //Open ();
+        if (this.opened) return;
+
         CodeGenerationRunner.Instance.AddHiddenCode("open " + this.identifier, delegate (string s)
         {
             this.Open();
