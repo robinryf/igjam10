@@ -9,6 +9,7 @@ public class PlayerMovementController : MonoBehaviour
     private bool moving;
     private Rigidbody2D rigid;
     public float DashDistance;
+    public bool Paused;
 
 
     // Use this for initialization
@@ -20,6 +21,11 @@ public class PlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Paused)
+        {
+            return;
+        }
+
         moving = rigid.velocity.Equals(Vector2.zero) == false;
         
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0)) && moving)
@@ -30,6 +36,11 @@ public class PlayerMovementController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (Paused)
+        {
+            return;
+        }
+
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
