@@ -1,9 +1,7 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CodeGenerationRunner : MonoBehaviour
@@ -30,6 +28,10 @@ public class CodeGenerationRunner : MonoBehaviour
 
     public Color CorrectColor;
 
+    public Action<string> CorrectEvent;
+
+    public Action<string> WrongEvent;
+
     // Use this for initialization
     void Start()
     {
@@ -55,8 +57,6 @@ public class CodeGenerationRunner : MonoBehaviour
         {
             UnityEngine.Debug.Log(code);
         }
-        //GameObject newCode = Instantiate(codeUI);
-        //newCode.transform.parent = this.gameObject.transform;
         CodeUi.GetComponent<Text>().text = code;
     }
 
@@ -101,6 +101,7 @@ public class CodeGenerationRunner : MonoBehaviour
         {
             this.HistoryUi.AddHistory(new CodeHistory.Output(this.CodeUi.text, this.CorrectColor));
             this.HistoryUi.AddHistory(new CodeHistory.Output("    Code Accepted", this.CorrectColor));
+            this.SendCorrectEvent();
             this.Reset();
         }
         else
@@ -113,10 +114,27 @@ public class CodeGenerationRunner : MonoBehaviour
                 outputs.Add(new CodeHistory.Output(error, this.ErrorColor));
             }
             outputs.Add(new CodeHistory.Output("    Code Denied", this.ErrorColor));
+            this.SendCorrectEvent();
             this.HistoryUi.AddHistory(outputs.ToArray());
             this.Reset();
         }
         this.CmdInputUi.ActivateInputField();
+    }
+
+    protected void SendCorrectEvent()
+    {
+        if (CorrectEvent != null)
+        {
+            CorrectEvent(this.CodeUi.text);
+        }
+    }
+
+    protected void SendWrongEvent()
+    {
+        if (WrongEvent != null)
+        {
+            WrongEvent(this.CodeUi.text);
+        }
     }
 
     public void Reset()
