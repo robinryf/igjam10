@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerMovementController : MonoBehaviour
 {
+    public int DashCount;
+
     private bool dash;
     public float maxSpeed = 5f;
 
@@ -15,6 +17,7 @@ public class PlayerMovementController : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+        DashCount = 1;
         rigid = GetComponent<Rigidbody2D>();
     }
 
@@ -28,8 +31,9 @@ public class PlayerMovementController : MonoBehaviour
 
         moving = rigid.velocity.Equals(Vector2.zero) == false;
         
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0)) && moving)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0)) && moving && DashCount > 0)
         {
+            DashCount--;
             dash = true;
         }
     }
