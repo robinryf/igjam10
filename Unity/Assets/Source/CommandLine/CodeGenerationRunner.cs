@@ -20,28 +20,25 @@ public class CodeGenerationRunner : MonoBehaviour
 
     public InputField CmdInputUi;
 
-    public bool NewCode;
+    public bool NewCode = false;
 
-    private CodeGenerator _codeGenerator;
+    private CodeGenerator _codeGenerator = new CodeGenerator();
 
-    private ExceptionGenerator _exceptionGenerator;
+    private ExceptionGenerator _exceptionGenerator = new ExceptionGenerator();
 
-    public Action<string, object> CorrectHiddenEvent;
+    public Action<string> CorrectHiddenEvent;
 
-    public Action<string, object> CorrectEvent;
+    public Action<string> CorrectEvent;
 
-    public Action<string, object> WrongEvent;
+    public Action<string> WrongEvent;
 
     public List<string> HiddenCodes;
 
-    public Dictionary<string, object> CodeMapping;
+    private Dictionary<string, Action<string>> _codeMapping = new Dictionary<string, Action<string>>();
 
     // Use this for initialization
     void Start()
     {
-        NewCode = false;
-        _codeGenerator = new CodeGenerator();
-        _exceptionGenerator = new ExceptionGenerator();
         EventSystem.current.SetSelectedGameObject(CmdInputUi.gameObject);
     }
 
@@ -111,7 +108,7 @@ public class CodeGenerationRunner : MonoBehaviour
                 {
                     this.HistoryUi.PrintSuccess(text);
                     this.HistoryUi.PrintSuccess("    Code Accepted");
-                    this.SendCorrectHiddenEvent();
+                    this.SendCorrectHiddenEvent(text);
                     this.Reset();
                     return;
                 }
@@ -122,7 +119,7 @@ public class CodeGenerationRunner : MonoBehaviour
         {
             this.HistoryUi.PrintSuccess(this.CodeUi.text);
             this.HistoryUi.PrintSuccess("    Code Accepted");
-            this.SendCorrectEvent();
+            this.SendCorrectEvent(text);
             this.Reset();
             this.FlagNewCode();
         }
@@ -136,56 +133,71 @@ public class CodeGenerationRunner : MonoBehaviour
                 outputs.Add(error);
             }
             outputs.Add("    Code Denied");
-            this.SendCorrectEvent();
+            this.SendCorrectEvent(text);
             this.HistoryUi.PrintError(outputs.ToArray());
             this.Reset();
             this.FlagNewCode();
         }
     }
 
-    protected void SendCorrectEvent()
+    protected void SendCorrectEvent(string code)
     {
+        Action<string> reference = null;
+        this._codeMapping.TryGetValue(code, out reference);
+        if (reference != null)
+        {
+            reference(code);
+        }
+
         if (CorrectEvent != null)
         {
-            object reference = null;
-            this.CodeMapping.TryGetValue(this.CodeUi.text, out reference);
-            CorrectEvent(this.CodeUi.text, reference);
+            CorrectEvent(code);
         }
     }
 
-    protected void SendCorrectHiddenEvent()
+    protected void SendCorrectHiddenEvent(string code)
     {
-        if (CorrectEvent != null)
+        Action<string> reference = null;
+        this._codeMapping.TryGetValue(code, out reference);
+        if (reference != null)
         {
-            object reference = null;
-            this.CodeMapping.TryGetValue(this.CodeUi.text, out reference);
-            CorrectEvent(this.CodeUi.text, reference);
+            reference(code);
+        }
+
+        if (CorrectHiddenEvent != null)
+        {
+            CorrectHiddenEvent(code);
         }
     }
 
-    protected void SendWrongEvent()
+    protected void SendWrongEvent(string code)
     {
+        Action<string> reference = null;
+        this._codeMapping.TryGetValue(code, out reference);
+        if (reference != null)
+        {
+            reference(code);
+        }
+
         if (WrongEvent != null)
         {
-            object reference = null;
-            this.CodeMapping.TryGetValue(this.CodeUi.text, out reference);
-            WrongEvent(this.CodeUi.text, reference);
+            WrongEvent(code);
         }
     }
 
-    public void AddHiddenCode(string code, object reference = null)
+    public void AddHiddenCode(string code, Action<string> reference = null)
     {
         this.HiddenCodes.Add(code);
 
         if (reference == null) return;
 
-        this.CodeMapping.Add(code, reference);
+        this._codeMapping.Add(code, reference);
     }
 
     public void RemoveHiddenCode(string code)
     {
         this.HiddenCodes.Remove(code);
-        this.CodeMapping.Remove(code);
+        this._codeMapping.Remove(code);
     }
 
     public void Reset()
