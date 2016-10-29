@@ -23,6 +23,10 @@ public class TimeHealthBar : MonoBehaviour
 
     private float timeLeft;
 
+    public float StartingSequenceTime = 3;
+    private bool startingSequence = true;
+    private float startingSequenceTimeLeft;
+
     public static TimeHealthBar Instance { get; private set; }
 
     private void Awake()
@@ -37,7 +41,8 @@ public class TimeHealthBar : MonoBehaviour
         timeHealthSlider.minValue = 0f;
         timeHealthSlider.maxValue = startingTimeHealth;
         sliderFillImage.color = normalColor;
-        timeHealthSlider.value = startingTimeHealth;
+        timeHealthSlider.value = 0;
+        startingSequenceTimeLeft = StartingSequenceTime;
     }
 
     private void OnCorrectCodeEntred(string s, CodeGenerator.DifficultyType difficulty)
@@ -60,6 +65,20 @@ public class TimeHealthBar : MonoBehaviour
 
     void Update()
     {
+        if (startingSequence)
+        {
+            startingSequenceTimeLeft -= Time.deltaTime;
+            timeLeft = Mathf.Lerp(0, startingTimeHealth, 1 - (startingSequenceTimeLeft / StartingSequenceTime));
+
+            if (startingSequenceTimeLeft <= 0)
+            {
+                timeLeft = startingTimeHealth;
+                startingSequence = false;
+            }
+            DrawTime();
+            return;
+        }
+
         if (damaged)
         {
             sliderFillImage.color = damagedColor;
