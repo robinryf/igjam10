@@ -164,6 +164,49 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 27069547}
+--- !u!1 &267925577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 267925578}
+  - 61: {fileID: 267925579}
+  m_Layer: 0
+  m_Name: CameraCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &267925578
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 267925577}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.03, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1656969284}
+  m_RootOrder: 0
+--- !u!61 &267925579
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 267925577}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 6.34}
 --- !u!1 &388867835
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 45
   DashDistance: 180
+  Paused: 0
 --- !u!4 &911798481
 Transform:
   m_ObjectHideFlags: 0
@@ -817,7 +861,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 267925578}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!114 &1656969285
@@ -832,13 +877,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 1656969283}
-  TrackingObject: {fileID: 911798478}
-  ScreenMoveRect:
+  Player: {fileID: 911798480}
+  ViewPortRect:
     serializedVersion: 2
-    x: 0.3
+    x: 0.1
     y: 0
-    width: 0.4
+    width: 0.8
     height: 1
+  ViewPortPercentage: {x: 0.7, y: 1}
+  CameraMoveTime: 0.65
+  CameraMoveDistance: 8
 --- !u!1 &1737815095
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,6 +1019,11 @@ Prefab:
     - target: {fileID: 4000011287309366, guid: cb90c423b808443448f091333a37de1a, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010833312538, guid: cb90c423b808443448f091333a37de1a,
+        type: 2}
+      propertyPath: InitialOpacity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb90c423b808443448f091333a37de1a, type: 2}
