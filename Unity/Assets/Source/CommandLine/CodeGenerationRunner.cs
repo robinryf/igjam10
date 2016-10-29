@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -41,11 +42,13 @@ public class CodeGenerationRunner : MonoBehaviour
         NewCode = false;
         _codeGenerator = new CodeGenerator();
         _exceptionGenerator = new ExceptionGenerator();
+        EventSystem.current.SetSelectedGameObject(CmdInputUi.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
+        EventSystem.current.SetSelectedGameObject(CmdInputUi.gameObject);
         this.UpdateCode();
     }
 
