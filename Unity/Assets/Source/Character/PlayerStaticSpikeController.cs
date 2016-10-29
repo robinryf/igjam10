@@ -11,7 +11,7 @@ public class PlayerStaticSpikeController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.transform.parent.gameObject.tag.Contains("Spike"))
+		if (other.tag == "Spikes" || other.transform.parent.gameObject.tag == "Spikes")
 		{
 			timeHealthBar.RemoveTimeHealth(damage);
 		}

@@ -21,7 +21,6 @@ GameObject:
   - 4: {fileID: 4000011490084840}
   - 212: {fileID: 212000012860145946}
   - 61: {fileID: 61000012192752026}
-  - 114: {fileID: 114000013451556536}
   m_Layer: 0
   m_Name: Spike_Pixel
   m_TagString: Spikes
@@ -72,7 +71,6 @@ GameObject:
   - 4: {fileID: 4000011825717134}
   - 212: {fileID: 212000010164008650}
   - 61: {fileID: 61000013151656134}
-  - 114: {fileID: 114000013145376334}
   m_Layer: 0
   m_Name: Spike_Pixel
   m_TagString: Spikes
@@ -90,7 +88,6 @@ GameObject:
   - 4: {fileID: 4000011523100046}
   - 212: {fileID: 212000010752027796}
   - 61: {fileID: 61000010237356680}
-  - 114: {fileID: 114000011096573700}
   m_Layer: 0
   m_Name: Spike_Pixel
   m_TagString: Spikes
@@ -223,30 +220,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
---- !u!114 &114000011096573700
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014206219226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a61140be6914f03964d7074d364a07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 20
---- !u!114 &114000013145376334
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012982431748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a61140be6914f03964d7074d364a07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 20
 --- !u!114 &114000013342680724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -261,18 +234,6 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0}
   endPosition: {x: -1, y: -1}
   speed: 0.5
---- !u!114 &114000013451556536
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010047652184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a61140be6914f03964d7074d364a07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 20
 --- !u!212 &212000010164008650
 SpriteRenderer:
   m_ObjectHideFlags: 1
