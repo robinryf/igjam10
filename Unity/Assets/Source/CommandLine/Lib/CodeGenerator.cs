@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CodeGenerator
 {
@@ -71,8 +72,6 @@ public class CodeGenerator
                 strings.Add(Values[nextPick]);
                 break;
         }
-        strings.ForEach(Debug.Log);
         return string.Join(" ", strings.ToArray());
     }
-
 }

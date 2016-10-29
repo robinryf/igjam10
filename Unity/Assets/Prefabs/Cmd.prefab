@@ -407,11 +407,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631389bc58d36ef4fa2dda06e5927af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  codeUI: {fileID: 114000013593440588}
-  correctCodeUI: {fileID: 114000010456189308}
-  historyUI: {fileID: 114000013555374198}
-  cmdInputUI: {fileID: 114000012143008382}
-  newCode: 0
+  Debug: 0
+  HaveToSubmit: 1
+  CodeUi: {fileID: 114000013593440588}
+  CorrectCodeUi: {fileID: 114000010456189308}
+  HistoryUi: {fileID: 114000013555374198}
+  CmdInputUi: {fileID: 114000012143008382}
+  NewCode: 0
+  ErrorColor: {r: 1, g: 0.284, b: 0.178, a: 1}
+  CorrectColor: {r: 0.34449795, g: 0.875, b: 0.09007351, a: 1}
 --- !u!114 &114000012143008382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -454,13 +458,24 @@ MonoBehaviour:
   m_InputType: 0
   m_AsteriskChar: 42
   m_KeyboardType: 0
-  m_LineType: 0
+  m_LineType: 1
   m_HideMobileInput: 0
   m_CharacterValidation: 0
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114000011250493222}
+        m_MethodName: CheckInput
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -567,7 +582,7 @@ MonoBehaviour:
   History: []
   Content: {fileID: 1000013300962278}
   InputText: {fileID: 114000010074903504}
-  maxChildCount: 30
+  MaxChildCount: 30
 --- !u!114 &114000013593440588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -615,7 +630,7 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 281
+  m_PreferredWidth: 380
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
@@ -709,8 +724,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -808.5, y: -0.0009689331}
-  m_SizeDelta: {x: 303, y: 1080.1}
+  m_AnchoredPosition: {x: -752, y: -0.12471987}
+  m_SizeDelta: {x: 416, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011665926248
 RectTransform:
@@ -765,7 +780,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -140.5, y: -499}
+  m_AnchoredPosition: {x: -190, y: -498.92}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!224 &224000012189386438
@@ -783,8 +798,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000028371811, y: 0}
-  m_SizeDelta: {x: 281, y: 30}
+  m_AnchoredPosition: {x: -0.00000071525574, y: 0}
+  m_SizeDelta: {x: 380, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000012385201756
 RectTransform:
@@ -803,7 +818,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1.0000129, y: -472.80005}
-  m_SizeDelta: {x: 281, y: 30}
+  m_SizeDelta: {x: 380, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000013101051802
 RectTransform:
@@ -860,7 +875,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1.0000145, y: 41.124992}
-  m_SizeDelta: {x: 281, y: 997.85}
+  m_SizeDelta: {x: 380, y: 997.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000013328876130
 RectTransform:
@@ -897,6 +912,6 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.9999938, y: -507}
-  m_SizeDelta: {x: 281, y: 38.4}
+  m_AnchoredPosition: {x: 1.0000224, y: -506.80005}
+  m_SizeDelta: {x: 380, y: 38}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -14,8 +14,6 @@ public class ExceptionGenerator {
         {
             return e.ToString();
         }
-
-        return null;
     }
 
 }
