@@ -42,6 +42,12 @@ public class CodeGenerationRunner : MonoBehaviour
 
     private CodeGenerator.DifficultyType? _currentDifficulty;
 
+    public bool PlaySounds;
+
+    public AudioSource SuccessSound;
+    public AudioSource ErrorSound;
+    public AudioSource HintSound;
+
     void Awake()
     {
         Instance = this;
@@ -51,6 +57,8 @@ public class CodeGenerationRunner : MonoBehaviour
     void Start()
     {
         EventSystem.current.SetSelectedGameObject(CmdInputUi.gameObject);
+        this.CorrectEvent += delegate (string s, CodeGenerator.DifficultyType type) { this.PlaySuccessSound(); };
+        this.WrongEvent += delegate (string s, CodeGenerator.DifficultyType type) { this.PlayErrorSound(); };
         this.Enable(true);
     }
 
@@ -215,6 +223,21 @@ public class CodeGenerationRunner : MonoBehaviour
         }
     }
 
+    public void PlaySuccessSound()
+    {
+        this.SuccessSound.PlayOneShot(this.SuccessSound.clip);
+    }
+
+    public void PlayErrorSound()
+    {
+        this.ErrorSound.PlayOneShot(this.ErrorSound.clip);
+    }
+
+    public void PlayHintSound()
+    {
+        this.HintSound.PlayOneShot(this.HintSound.clip);
+    }
+
     public void AddHiddenCode(string code, Func<string, bool> reference = null)
     {
         this.HiddenCodes.Add(code);
@@ -264,6 +287,16 @@ public class CodeGenerationRunner : MonoBehaviour
         {
             this.FlagNewCode();
         }
+    }
+
+    public void DisableSounds()
+    {
+        this.PlaySounds = false;
+    }
+
+    public void EnableSounds()
+    {
+        this.PlaySounds = true;
     }
 
     public CodeGenerator.DifficultyType GetRandomDifficulty()
