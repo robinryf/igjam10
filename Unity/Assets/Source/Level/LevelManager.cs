@@ -15,8 +15,18 @@ public class LevelManager : MonoBehaviour
 
     public string[] LevelNames;
 
+    private bool gameStarted;
+
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Instance.gameStarted = false;
+            Instance.currentLevelIndex = -1;
+            Destroy(this.gameObject);
+            return;
+        }
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
@@ -24,6 +34,11 @@ public class LevelManager : MonoBehaviour
 
     public void StartGame()
     {
+        if (gameStarted)
+        {
+            return;
+        }
+        gameStarted = true;
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
         LoadNextLevel();
     }
@@ -42,6 +57,10 @@ public class LevelManager : MonoBehaviour
 
     private void SceneManagerOnSceneLoaded(Scene arg0, LoadSceneMode loadSceneMode)
     {
+        if (arg0.name == "start")
+        {
+            return;
+        }
         // setup scene
         var player = FindObjectOfType<PlayerMovementController>();
         player.Paused = true;
@@ -56,6 +75,8 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             string line;
+            bool warn = false;
+            bool error = false;
             switch (i)
             {
                 case 0:
@@ -80,20 +101,34 @@ public class LevelManager : MonoBehaviour
                     line = "070%: Recalibrating power management...";
                     break;
                 case 7:
-                    line = "080%: Disonnecting guest clients...";
+                    line = "080%: Disonnecting guest clients (9/10)...";
+                    warn = true;
                     break;
                 case 8:
-                    line = "090%: Modifying response protocol...";
+                    line = "090%: Detecting weired smell in system...";
+                    warn = true;
                     break;
                 case 9:
                     line = "100%: INTRUDER ALERT! ACTIVATING LOCK-IN ROUTINE.";
+                    error = true;
                     break;
                 default:
                     line = "...";
                     break;
             }
 
-            CodeGenerationRunner.Instance.HistoryUi.PrintSuccess(line);
+            if (error)
+            {
+                CodeGenerationRunner.Instance.HistoryUi.PrintError(line);
+            }
+            else if (warn)
+            {
+                CodeGenerationRunner.Instance.HistoryUi.PrintHint(line);
+            }
+            else
+            {
+                CodeGenerationRunner.Instance.HistoryUi.PrintSuccess(line);
+            }
 
             yield return new WaitForSeconds(0.3f);
         }
@@ -105,6 +140,7 @@ public class LevelManager : MonoBehaviour
 
     public void GameOver()
     {
+        gameStarted = false;
         var player = FindObjectOfType<PlayerMovementController>();
         player.Paused = true;
         player.rigid.velocity = Vector2.zero;
@@ -114,6 +150,7 @@ public class LevelManager : MonoBehaviour
 
     public void Retry()
     {
+        gameStarted = false;
         SceneManager.LoadScene(LevelNames[currentLevelIndex]);
     }
 }
