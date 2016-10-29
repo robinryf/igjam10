@@ -137,7 +137,7 @@ public class CodeGenerationRunner : MonoBehaviour
         {
             this.HistoryUi.PrintSuccess(this.CodeUi.text);
             this.HistoryUi.PrintSuccess("    Code Accepted");
-            this.SendCorrectEvent(text);
+            this.SendCorrectEvent(text, this._currentDifficulty.Value);
             this.Reset();
             this.FlagNewCode();
         }
@@ -151,14 +151,14 @@ public class CodeGenerationRunner : MonoBehaviour
                 outputs.Add(error);
             }
             outputs.Add("    Code Denied");
-            this.SendWrongEvent(text);
+            this.SendWrongEvent(text, this._currentDifficulty.Value);
             this.HistoryUi.PrintError(outputs.ToArray());
             this.Reset();
             this.FlagNewCode();
         }
     }
 
-    protected void SendCorrectEvent(string code)
+    protected void SendCorrectEvent(string code, CodeGenerator.DifficultyType difficulty)
     {
         Action<string> reference = null;
         this._codeMapping.TryGetValue(code, out reference);
@@ -169,7 +169,7 @@ public class CodeGenerationRunner : MonoBehaviour
 
         if (CorrectEvent != null)
         {
-            CorrectEvent(code, this._currentDifficulty.Value);
+            CorrectEvent(code, difficulty);
         }
     }
 
@@ -184,11 +184,11 @@ public class CodeGenerationRunner : MonoBehaviour
 
         if (CorrectHiddenEvent != null)
         {
-            CorrectHiddenEvent(code, this._currentDifficulty.Value);
+            CorrectHiddenEvent(code);
         }
     }
 
-    protected void SendWrongEvent(string code)
+    protected void SendWrongEvent(string code, CodeGenerator.DifficultyType difficulty)
     {
         Action<string> reference = null;
         this._codeMapping.TryGetValue(code, out reference);
@@ -199,7 +199,7 @@ public class CodeGenerationRunner : MonoBehaviour
 
         if (WrongEvent != null)
         {
-            WrongEvent(code, this._currentDifficulty.Value);
+            WrongEvent(code, difficulty);
         }
     }
 
@@ -254,9 +254,9 @@ public class CodeGenerationRunner : MonoBehaviour
     public CodeGenerator.DifficultyType GetRandomDifficulty()
     {
         CodeGenerator.DifficultyType[] values =
-            (CodeGenerator.DifficultyType[]) Enum.GetValues(typeof(CodeGenerator.DifficultyType));
+            (CodeGenerator.DifficultyType[])Enum.GetValues(typeof(CodeGenerator.DifficultyType));
         CodeGenerator.DifficultyType random =
-            (CodeGenerator.DifficultyType) values.GetValue(Random.Range(0, values.Length));
+            (CodeGenerator.DifficultyType)values.GetValue(Random.Range(0, values.Length));
         return random;
     }
 }
