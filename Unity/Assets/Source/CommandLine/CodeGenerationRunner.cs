@@ -30,15 +30,17 @@ public class CodeGenerationRunner : MonoBehaviour
 
     private ExceptionGenerator _exceptionGenerator = new ExceptionGenerator();
 
-    public Action<string> CorrectHiddenEvent;
+    public Action<string, CodeGenerator.DifficultyType> CorrectHiddenEvent;
 
-    public Action<string> CorrectEvent;
+    public Action<string, CodeGenerator.DifficultyType> CorrectEvent;
 
-    public Action<string> WrongEvent;
+    public Action<string, CodeGenerator.DifficultyType> WrongEvent;
 
     public List<string> HiddenCodes;
 
     private Dictionary<string, Action<string>> _codeMapping = new Dictionary<string, Action<string>>();
+
+    private CodeGenerator.DifficultyType? _currentDifficulty;
 
     void Awake()
     {
@@ -66,7 +68,8 @@ public class CodeGenerationRunner : MonoBehaviour
 
         this.NewCode = false;
 
-        string code = _codeGenerator.Generate(this.GetRandomDifficulty());
+        this._currentDifficulty = this.GetRandomDifficulty();
+        string code = _codeGenerator.Generate(this._currentDifficulty.Value);
         if (Debug)
         {
             UnityEngine.Debug.Log(code);
@@ -166,7 +169,7 @@ public class CodeGenerationRunner : MonoBehaviour
 
         if (CorrectEvent != null)
         {
-            CorrectEvent(code);
+            CorrectEvent(code, this._currentDifficulty.Value);
         }
     }
 
@@ -181,7 +184,7 @@ public class CodeGenerationRunner : MonoBehaviour
 
         if (CorrectHiddenEvent != null)
         {
-            CorrectHiddenEvent(code);
+            CorrectHiddenEvent(code, this._currentDifficulty.Value);
         }
     }
 
@@ -196,7 +199,7 @@ public class CodeGenerationRunner : MonoBehaviour
 
         if (WrongEvent != null)
         {
-            WrongEvent(code);
+            WrongEvent(code, this._currentDifficulty.Value);
         }
     }
 
@@ -220,6 +223,7 @@ public class CodeGenerationRunner : MonoBehaviour
         this.CmdInputUi.text = string.Empty;
         this.CorrectCodeUi.text = string.Empty;
         this.CmdInputUi.ActivateInputField();
+        this._currentDifficulty = null;
     }
 
     public void FlagNewCode()

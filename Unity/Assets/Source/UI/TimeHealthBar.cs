@@ -39,7 +39,7 @@ public class TimeHealthBar : MonoBehaviour {
 		timeHealthSlider.value = startingTimeHealth;
 	}
 
-    private void OnCorrectCodeEntred(string s)
+    private void OnCorrectCodeEntred(string s, CodeGenerator.DifficultyType difficulty)
     {
         AddTimeHealth(AddTimeOnCorrectCode);
     }
