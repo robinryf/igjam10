@@ -41,7 +41,7 @@ public class TimeHealthBar : MonoBehaviour {
 
     private void OnCorrectCodeEntred(string s, CodeGenerator.DifficultyType difficulty)
     {
-        AddTimeHealth(AddTimeOnCorrectCode);
+        AddTimeHealth(AddTimeOnCorrectCode * ((int) difficulty + 1));
     }
 
     private void OnDestroy()
