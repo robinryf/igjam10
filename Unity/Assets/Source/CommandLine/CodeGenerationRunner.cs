@@ -171,6 +171,21 @@ public class CodeGenerationRunner : MonoBehaviour
         }
     }
 
+    public void AddHiddenCode(string code, object reference = null)
+    {
+        this.HiddenCodes.Add(code);
+
+        if (reference == null) return;
+
+        this.CodeMapping.Add(code, reference);
+    }
+
+    public void RemoveHiddenCode(string code)
+    {
+        this.HiddenCodes.Remove(code);
+        this.CodeMapping.Remove(code);
+    }
+
     public void Reset()
     {
         this.CmdInputUi.text = string.Empty;
