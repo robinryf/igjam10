@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa62167d658c48d18512cb4ea7f6052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingTimeHealth: 100
+  startingTimeHealth: 300
   timeHealthSlider: {fileID: 114000011092267020}
   sliderFillImage: {fileID: 114000014133408762}
   damagedColor: {r: 1, g: 0.572, b: 0, a: 1}
