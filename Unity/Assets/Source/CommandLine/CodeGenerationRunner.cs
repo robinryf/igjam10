@@ -30,7 +30,7 @@ public class CodeGenerationRunner : MonoBehaviour
 
     private ExceptionGenerator _exceptionGenerator = new ExceptionGenerator();
 
-    public Action<string, CodeGenerator.DifficultyType> CorrectHiddenEvent;
+    public Action<string> CorrectHiddenEvent;
 
     public Action<string, CodeGenerator.DifficultyType> CorrectEvent;
 
