@@ -72,6 +72,7 @@ public class LevelManager : MonoBehaviour
         {
             return;
         }
+        gameStarted = true;
         // setup scene
         var player = FindObjectOfType<PlayerMovementController>();
         if (player != null)
@@ -79,6 +80,7 @@ public class LevelManager : MonoBehaviour
             player.Paused = true;
         }
         CodeGenerationRunner.Instance.Disable();
+        InitializeText.Instance.gameObject.SetActive(true);
 
         // start timer
         StartCoroutine(StartSequenceLog());
@@ -89,44 +91,56 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             string line;
+            string middleScreenLine;
             bool warn = false;
             bool error = false;
             switch (i)
             {
                 case 0:
                     line = "010%: Initializing console engine...";
+                    middleScreenLine = "Initializing: 010%";
                     break;
                 case 1:
                     line = "020%: Feeding hamsters...";
+                    middleScreenLine = "Initializing: 020%";
                     break;
                 case 2:
                     line = "030%: Registering native extension...";
+                    middleScreenLine = "Initializing: 030%";
                     break;
                 case 3:
                     line = "040%: Deleting COBOL code...";
+                    middleScreenLine = "Initializing: 040%";
                     break;
                 case 4:
                     line = "050%: Filling query string cache...";
+                    middleScreenLine = "Initializing: 050%";
                     break;
                 case 5:
                     line = "060%: Hiding eastereggs...";
+                    middleScreenLine = "Initializing: 060%";
                     break;
                 case 6:
                     line = "070%: Recalibrating power management...";
+                    middleScreenLine = "Initializing: 070%";
                     break;
                 case 7:
                     line = "080%: Disonnecting guest clients (9/10)...";
+                    middleScreenLine = "Initializing: 080%";
                     warn = true;
                     break;
                 case 8:
                     line = "090%: Detecting weired smell in system...";
+                    middleScreenLine = "Initializing: 090%";
                     warn = true;
                     break;
                 case 9:
                     line = "100%: INTRUDER ALERT! ACTIVATING LOCK-IN ROUTINE.";
+                    middleScreenLine = "Initializing: 100%";
                     error = true;
                     break;
                 default:
+                    middleScreenLine = "...i";
                     line = "...";
                     break;
             }
@@ -134,15 +148,20 @@ public class LevelManager : MonoBehaviour
             if (error)
             {
                 CodeGenerationRunner.Instance.HistoryUi.PrintError(line);
+                InitializeText.Instance.Text.color = Color.red;
             }
             else if (warn)
             {
                 CodeGenerationRunner.Instance.HistoryUi.PrintHint(line);
+                InitializeText.Instance.Text.color = Color.yellow;
             }
             else
             {
                 CodeGenerationRunner.Instance.HistoryUi.PrintSuccess(line);
+                InitializeText.Instance.Text.color = Color.green;
             }
+
+            InitializeText.Instance.Text.text = middleScreenLine;
 
             yield return new WaitForSeconds(0.3f);
         }
@@ -153,6 +172,7 @@ public class LevelManager : MonoBehaviour
             player.Paused = false;
         }
         CodeGenerationRunner.Instance.Enable();
+        InitializeText.Instance.gameObject.SetActive(false);
     } 
 
     public void GameOver()
