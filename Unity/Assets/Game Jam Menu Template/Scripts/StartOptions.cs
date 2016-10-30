@@ -79,7 +79,10 @@ public class StartOptions : MonoBehaviour {
 		//if changeMusicOnStart is true, call the PlayLevelMusic function of playMusic
 		if (changeMusicOnStart)
 		{
-			playMusic.PlayLevelMusic ();
+		    if (playMusic != null)
+		    {
+		        playMusic.PlayLevelMusic ();
+		    }
 		}	
 	}
 

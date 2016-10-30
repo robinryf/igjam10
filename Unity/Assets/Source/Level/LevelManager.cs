@@ -54,6 +54,14 @@ public class LevelManager : MonoBehaviour
     private void LoadNextLevel()
     {
         currentLevelIndex++;
+
+        if (currentLevelIndex >= LevelNames.Length)
+        {
+            // reached end of game.
+            SceneManager.LoadScene("win");
+            return;
+        }
+        
         var levelName = LevelNames[currentLevelIndex];
         SceneManager.LoadScene(levelName);
     }
@@ -66,7 +74,10 @@ public class LevelManager : MonoBehaviour
         }
         // setup scene
         var player = FindObjectOfType<PlayerMovementController>();
-        player.Paused = true;
+        if (player != null)
+        {
+            player.Paused = true;
+        }
         CodeGenerationRunner.Instance.Disable();
 
         // start timer
@@ -137,7 +148,10 @@ public class LevelManager : MonoBehaviour
         }
 
         var player = FindObjectOfType<PlayerMovementController>();
-        player.Paused = false;
+        if (player != null)
+        {
+            player.Paused = false;
+        }
         CodeGenerationRunner.Instance.Enable();
     } 
 
@@ -149,8 +163,11 @@ public class LevelManager : MonoBehaviour
         MusicController.FadeDown(0.2F);
         GameOverSound.Play(750);
         var player = FindObjectOfType<PlayerMovementController>();
-        player.Paused = true;
-        player.rigid.velocity = Vector2.zero;
+        if (player != null)
+        {
+            player.Paused = true;
+            player.rigid.velocity = Vector2.zero;
+        }
         CodeGenerationRunner.Instance.Disable();
         GameOverScreen.Instance.gameObject.SetActive(true);
     }
