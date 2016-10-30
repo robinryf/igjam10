@@ -29,8 +29,8 @@ public class LevelManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-
         Instance = this;
+        SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -42,7 +42,7 @@ public class LevelManager : MonoBehaviour
             return;
         }
         gameStarted = true;
-        SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
+        
         LoadNextLevel();
     }
 
