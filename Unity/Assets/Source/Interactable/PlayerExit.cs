@@ -10,7 +10,6 @@ public class PlayerExit : MonoBehaviour
         // Check if we are colliding with player.
         if (collider.gameObject.tag == "Player")
         {
-            this.ExitSound.Play();
             if (LevelManager.Instance == null)
             {
                 Debug.LogWarning("You are playing the level directly or the level manager was destroyed. Please use the start scene.");

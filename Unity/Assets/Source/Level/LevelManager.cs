@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance { get; private set; }
 
     public AudioSource GameOverSound;
+    public AudioSource ExitSound;
     public PlayMusic MusicController;
 
     private int currentLevelIndex = -1;
@@ -48,6 +49,7 @@ public class LevelManager : MonoBehaviour
 
     public void EndLevel()
     {
+        ExitSound.Play();
         LoadNextLevel();
     }
 
