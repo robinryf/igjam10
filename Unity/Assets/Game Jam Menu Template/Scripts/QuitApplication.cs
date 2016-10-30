@@ -3,6 +3,14 @@ using System.Collections;
 
 public class QuitApplication : MonoBehaviour {
 
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Joystick1Button1))
+        {
+            Quit();
+        }
+    }
+
 	public void Quit()
 	{
 		//If we are running in a standalone build of the game
