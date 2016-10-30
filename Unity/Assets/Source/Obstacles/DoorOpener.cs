@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DoorOpener : MonoBehaviour
@@ -47,6 +48,12 @@ public class DoorOpener : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (this.opened) return;
+
+        if (SceneManager.GetActiveScene().name.Equals("003"))
+        {
+            CodeGenerationRunner.Instance.HistoryUi.PrintHint("command `open` is available now");
+            CodeGenerationRunner.Instance.HintSound.Play();
+        }
 
         CodeGenerationRunner.Instance.AddHiddenCode("open " + this.identifier, delegate (string s)
         {
