@@ -11,6 +11,9 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
 
+    public AudioSource GameOverSound;
+    public PlayMusic MusicController;
+
     private int currentLevelIndex = -1;
 
     public string[] LevelNames;
@@ -140,7 +143,11 @@ public class LevelManager : MonoBehaviour
 
     public void GameOver()
     {
+        if (!gameStarted) return;
+
         gameStarted = false;
+        MusicController.FadeDown(0.2F);
+        GameOverSound.Play(750);
         var player = FindObjectOfType<PlayerMovementController>();
         player.Paused = true;
         player.rigid.velocity = Vector2.zero;
