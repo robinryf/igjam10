@@ -31,7 +31,12 @@ public class GameOverScreen : MonoBehaviour
         SceneManager.LoadScene("start");
     }
 
-	private void SubmitName(string arg0)
+    private void Update()
+    {
+        EventSystem.current.SetSelectedGameObject(input.gameObject);
+    }
+
+    private void SubmitName(string arg0)
 	{
 		if (arg0.ToLower () == "restart") {
 			Retry ();
