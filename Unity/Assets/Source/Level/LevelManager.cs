@@ -72,7 +72,7 @@ public class LevelManager : MonoBehaviour
 
     private void SceneManagerOnSceneLoaded(Scene arg0, LoadSceneMode loadSceneMode)
     {
-        if (arg0.name == "start")
+        if (arg0.name == "start" || arg0.name == "win")
         {
             return;
         }
