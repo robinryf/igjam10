@@ -16,7 +16,9 @@ public class PlayerSpikeController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag != "Spikes" && other.transform.parent.gameObject.tag != "Spikes") return;
+        if (other.gameObject.tag != "Spikes") return;
+
+        if (other.transform.parent != null && other.transform.parent.gameObject.tag == "Spikes") return;
 
         hittingSound.loop = true;
         hittingSound.Play();
@@ -24,7 +26,9 @@ public class PlayerSpikeController : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag != "Spikes" && other.transform.parent.gameObject.tag != "Spikes") return;
+        if (other.gameObject.tag != "Spikes") return;
+
+        if (other.transform.parent != null && other.transform.parent.gameObject.tag == "Spikes") return;
 
         hittingSound.loop = false;
     }
