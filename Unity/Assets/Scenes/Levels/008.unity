@@ -406,12 +406,12 @@ Prefab:
     - target: {fileID: 224000010654494520, guid: cc51e3a523000a0468d3c7b42940ffdf,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -22.459387
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 224000010654494520, guid: cc51e3a523000a0468d3c7b42940ffdf,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 22.459387
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 224000012080459602, guid: cc51e3a523000a0468d3c7b42940ffdf,
         type: 2}
@@ -421,7 +421,7 @@ Prefab:
     - target: {fileID: 224000012080459602, guid: cc51e3a523000a0468d3c7b42940ffdf,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 114000012212990336, guid: cc51e3a523000a0468d3c7b42940ffdf,
         type: 2}
@@ -1540,26 +1540,6 @@ Transform:
   - {fileID: 1151401172}
   m_Father: {fileID: 0}
   m_RootOrder: 20
---- !u!1 &1592702974 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000011130483722, guid: 61097f37774c69a42b4dc4a57165bd56,
-    type: 2}
-  m_PrefabInternal: {fileID: 1726167742}
---- !u!114 &1592702981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1592702974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30b77d8d0649b441aa85a29cad739114, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bouncingSound: {fileID: 0}
-  hittingSound: {fileID: 0}
-  force: 200
-  maxSpeed: 500
 --- !u!1001 &1597726988
 Prefab:
   m_ObjectHideFlags: 0
