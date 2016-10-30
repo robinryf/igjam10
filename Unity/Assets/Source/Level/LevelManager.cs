@@ -45,7 +45,7 @@ public class LevelManager : MonoBehaviour
             return;
         }
         gameStarted = true;
-        
+
         LoadNextLevel();
     }
 
@@ -65,7 +65,7 @@ public class LevelManager : MonoBehaviour
             SceneManager.LoadScene("win");
             return;
         }
-        
+
         var levelName = LevelNames[currentLevelIndex];
         SceneManager.LoadScene(levelName);
     }
@@ -137,7 +137,7 @@ public class LevelManager : MonoBehaviour
                     middleScreenLine = "Initializing: 050%";
                     break;
                 case 5:
-                    line = "060%: Hiding eastereggs...";
+                    line = "060%: Hiding easter eggs...";
                     middleScreenLine = "Initializing: 060%";
                     break;
                 case 6:
@@ -145,12 +145,12 @@ public class LevelManager : MonoBehaviour
                     middleScreenLine = "Initializing: 070%";
                     break;
                 case 7:
-                    line = "080%: Disonnecting guest clients (9/10)...";
+                    line = "080%: Disconnecting guest clients (9/10)...";
                     middleScreenLine = "Initializing: 080%";
                     warn = true;
                     break;
                 case 8:
-                    line = "090%: Detecting weired smell in system...";
+                    line = "090%: Detecting weird smell in system...";
                     middleScreenLine = "Initializing: 090%";
                     warn = true;
                     break;
@@ -193,7 +193,7 @@ public class LevelManager : MonoBehaviour
         }
         CodeGenerationRunner.Instance.Enable(true);
         InitializeText.Instance.gameObject.SetActive(false);
-    } 
+    }
 
     public void GameOver()
     {
