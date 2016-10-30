@@ -49,7 +49,7 @@ public class PlayerMovementController : MonoBehaviour
 
         moving = rigid.velocity.Equals(Vector2.zero) == false;
         
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0)) && moving && DashCount > 0)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && moving && DashCount > 0)
         {
             DashCount--;
             dash = true;
