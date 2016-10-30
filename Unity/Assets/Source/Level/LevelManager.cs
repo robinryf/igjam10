@@ -21,6 +21,8 @@ public class LevelManager : MonoBehaviour
 
     private bool gameStarted;
 
+    private bool tutorialWasShown;
+
     private void Awake()
     {
         if (Instance != null)
@@ -74,8 +76,13 @@ public class LevelManager : MonoBehaviour
         {
             return;
         }
-        gameStarted = true;
         // setup scene
+        gameStarted = true;
+        StartCoroutine(StartGameRoutine());
+    }
+
+    private IEnumerator StartGameRoutine()
+    {
         var player = FindObjectOfType<PlayerMovementController>();
         if (player != null)
         {
@@ -83,9 +90,20 @@ public class LevelManager : MonoBehaviour
         }
         CodeGenerationRunner.Instance.Disable();
         InitializeText.Instance.gameObject.SetActive(true);
+        TimeHealthBar.Instance.enabled = false;
 
+        if (tutorialWasShown == false)
+        {
+            // Show tutorial
+            Debug.Log("Showing tutorial");
+            yield return new WaitForSeconds(5);
+            tutorialWasShown = true;
+        }
+
+        TimeHealthBar.Instance.enabled = true;
+        TimeHealthBar.Instance.StartSequence();
         // start timer
-        StartCoroutine(StartSequenceLog());
+        yield return StartSequenceLog();
     }
 
     private IEnumerator StartSequenceLog()
@@ -173,7 +191,7 @@ public class LevelManager : MonoBehaviour
         {
             player.Paused = false;
         }
-        CodeGenerationRunner.Instance.Enable();
+        CodeGenerationRunner.Instance.Enable(true);
         InitializeText.Instance.gameObject.SetActive(false);
     } 
 

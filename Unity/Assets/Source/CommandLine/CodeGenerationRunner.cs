@@ -51,6 +51,7 @@ public class CodeGenerationRunner : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        this._currentDifficulty = this.GetRandomDifficulty();
     }
 
     // Use this for initialization
@@ -59,7 +60,6 @@ public class CodeGenerationRunner : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(CmdInputUi.gameObject);
         this.CorrectEvent += delegate (string s, CodeGenerator.DifficultyType type) { this.PlaySuccessSound(); };
         this.WrongEvent += delegate (string s, CodeGenerator.DifficultyType type) { this.PlayErrorSound(); };
-        this.Enable(true);
     }
 
     // Update is called once per frame
@@ -92,7 +92,11 @@ public class CodeGenerationRunner : MonoBehaviour
 
     public void UpdateInput(string text)
     {
-        if (this.Disabled) return;
+        if (this.Disabled)
+        {
+            CmdInputUi.text = string.Empty;
+            return;
+        }
 
         if (this.HistoryUi.IsPrinting()) return;
 
