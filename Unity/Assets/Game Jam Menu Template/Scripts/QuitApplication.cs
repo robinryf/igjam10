@@ -5,10 +5,10 @@ public class QuitApplication : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Joystick1Button1))
-        {
-            Quit();
-        }
+        //if (Input.GetKeyUp(KeyCode.Joystick1Button1))
+        //{
+        //    Quit();
+        //}
     }
 
 	public void Quit()
