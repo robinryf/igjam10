@@ -44,6 +44,14 @@ public class StartOptions : MonoBehaviour {
 		playMusic = GetComponent<PlayMusic> ();
 	}
 
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Joystick1Button0))
+        {
+            StartButtonClicked();
+        }
+    }
+
 
 	public void StartButtonClicked()
 	{
