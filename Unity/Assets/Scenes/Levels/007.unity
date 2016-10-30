@@ -1671,6 +1671,111 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 18
+--- !u!1001 &1689659311
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2075884386}
+    m_Modifications:
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 208
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 973
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 468
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9218b521949111148afa4bf9f5d46695, type: 2}
+  m_IsPrefabParent: 0
+--- !u!224 &1689659312 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224000011807597694, guid: 9218b521949111148afa4bf9f5d46695,
+    type: 2}
+  m_PrefabInternal: {fileID: 1689659311}
 --- !u!1001 &1726167742
 Prefab:
   m_ObjectHideFlags: 0
@@ -1984,6 +2089,7 @@ RectTransform:
   - {fileID: 314562598}
   - {fileID: 1892322044}
   - {fileID: 209972441}
+  - {fileID: 1689659312}
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_AnchorMin: {x: 0, y: 0}
