@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 
@@ -210,6 +211,7 @@ public class LevelManager : MonoBehaviour
         }
         CodeGenerationRunner.Instance.Disable();
         GameOverScreen.Instance.gameObject.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(GameOverScreen.Instance.input.gameObject);
     }
 
     public void Retry()
