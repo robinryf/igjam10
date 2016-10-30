@@ -189,13 +189,14 @@ MonoBehaviour:
   sliderFillImage: {fileID: 114000014133408762}
   damagedColor: {r: 1, g: 0.572, b: 0, a: 1}
   healColor: {r: 0, g: 0.40661904, b: 1, a: 1}
-  normalColor: {r: 0, g: 1, b: 0.08965516, a: 1}
-  criticalColor: {r: 1, g: 0, b: 0, a: 1}
+  normalColor: {r: 0.56078434, g: 1, b: 0.32156864, a: 1}
+  criticalColor: {r: 1, g: 0.33333334, b: 0.4, a: 1}
   TimeDigitsText: {fileID: 114000011773142924}
   criticalThreshold: 50
   flashSpeed: 5
   dyingRate: 20
   AddTimeOnCorrectCode: 20
+  StartingSequenceTime: 3
 --- !u!114 &114000014133408762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -269,10 +270,10 @@ RectTransform:
   - {fileID: 224000013907473850}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -25, y: 30}
-  m_SizeDelta: {x: -699, y: 60}
+  m_SizeDelta: {x: 802, y: 60}
   m_Pivot: {x: 1, y: 1}
 --- !u!224 &224000013521837274
 RectTransform:

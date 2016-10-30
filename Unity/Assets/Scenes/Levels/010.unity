@@ -492,12 +492,12 @@ Prefab:
     - target: {fileID: 224000010654494520, guid: cc51e3a523000a0468d3c7b42940ffdf,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -22.459387
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 224000010654494520, guid: cc51e3a523000a0468d3c7b42940ffdf,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 22.459387
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 224000012080459602, guid: cc51e3a523000a0468d3c7b42940ffdf,
         type: 2}
@@ -507,7 +507,7 @@ Prefab:
     - target: {fileID: 224000012080459602, guid: cc51e3a523000a0468d3c7b42940ffdf,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 114000012212990336, guid: cc51e3a523000a0468d3c7b42940ffdf,
         type: 2}
@@ -1907,15 +1907,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607845, g: 0.19607845, b: 0.19607845, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f98643aa475abdb498bf7d649024bc13, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
