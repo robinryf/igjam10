@@ -34,7 +34,7 @@ public class PlayerSpikeController : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D other) {
-		if (other.gameObject.tag == "Spikes" || other.transform.parent.gameObject.tag == "Spikes") {
+		if (other.gameObject.tag == "Spikes" || (other.transform.parent != null && other.transform.parent.gameObject.tag == "Spikes")) {
 			Vector2 newPlayerVelocity = other.relativeVelocity * -1 * force;
 			if (newPlayerVelocity.magnitude > maxSpeed) {
 				newPlayerVelocity = Vector2.ClampMagnitude (newPlayerVelocity, maxSpeed);
