@@ -46,7 +46,7 @@ public class StartOptions : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Joystick1Button0))
+        if (SceneManager.GetActiveScene().name == "start" && Input.GetKeyUp(KeyCode.Joystick1Button0))
         {
             StartButtonClicked();
         }
