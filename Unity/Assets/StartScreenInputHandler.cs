@@ -17,8 +17,11 @@ public class StartScreenInputHandler : MonoBehaviour {
 
 	void OnLevelWasLoaded(int level)
 	{
-		EventSystem.current.SetSelectedGameObject(input.gameObject, null);
-		input.OnPointerClick (new PointerEventData(EventSystem.current));
+	    if (input != null)
+	    {
+		    EventSystem.current.SetSelectedGameObject(input.gameObject, null);
+		    input.OnPointerClick (new PointerEventData(EventSystem.current));
+	    }
 	}
 
 	private void SubmitName(string arg0)
