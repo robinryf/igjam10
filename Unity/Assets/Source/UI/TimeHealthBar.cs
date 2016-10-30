@@ -34,6 +34,11 @@ public class TimeHealthBar : MonoBehaviour
         Instance = this;
     }
 
+    public void StartSequence()
+    {
+        startingSequence = true;
+    }
+
     void Start()
     {
         CodeGenerationRunner.Instance.CorrectEvent += OnCorrectCodeEntred;
