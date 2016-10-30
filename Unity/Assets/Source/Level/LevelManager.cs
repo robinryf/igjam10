@@ -96,7 +96,7 @@ public class LevelManager : MonoBehaviour
         {
             // Show tutorial
             Debug.Log("Showing tutorial");
-            yield return new WaitForSeconds(5);
+            yield return Tutorial.Instance.ShowTutorial();
             tutorialWasShown = true;
         }
 
