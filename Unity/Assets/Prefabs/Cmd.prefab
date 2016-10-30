@@ -412,7 +412,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -486,7 +486,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -705,7 +705,7 @@ MonoBehaviour:
   PlaySounds: 0
   SuccessSound: {fileID: 82000010284682936}
   ErrorSound: {fileID: 82000010713211956}
-  HintSound: {fileID: 0}
+  HintSound: {fileID: 82000012292842806}
 --- !u!114 &114000012143008382
 MonoBehaviour:
   m_ObjectHideFlags: 1
