@@ -13,6 +13,7 @@ public class DoorOpener : MonoBehaviour
     public float openingTime = 1;
     public Text identifierObject;
     public string identifier;
+    public AudioSource openingSound;
 
     void Awake()
     {
@@ -34,11 +35,11 @@ public class DoorOpener : MonoBehaviour
             GameObject child = childTransform.gameObject;
             if (child.name == "top")
             {
-				top = child;
+                top = child;
             }
-			else if (child.name == "bottom")
+            else if (child.name == "bottom")
             {
-				bottom = child;
+                bottom = child;
             }
         }
     }
@@ -59,24 +60,24 @@ public class DoorOpener : MonoBehaviour
 
     public void Open()
     {
-        if (!opened)
-        {
-            Vector2 baseLine = new Vector2(0, 1);
-            Vector2 direction = (rotation * baseLine).normalized;
-			Vector2 topEndPosition = (Vector2)top.transform.position + direction * openingSize;
-			Vector2 bottomEndPosition = (Vector2)bottom.transform.position - direction * openingSize;
-			StartCoroutine(OpenDoors(topEndPosition, bottomEndPosition, openingTime));
-            opened = true;
-        }
+        if (this.opened) return;
+
+        Vector2 baseLine = new Vector2(0, 1);
+        Vector2 direction = (rotation * baseLine).normalized;
+        Vector2 topEndPosition = (Vector2)top.transform.position + direction * openingSize;
+        Vector2 bottomEndPosition = (Vector2)bottom.transform.position - direction * openingSize;
+        StartCoroutine(OpenDoors(topEndPosition, bottomEndPosition, openingTime));
+        this.openingSound.Play();
+        opened = true;
     }
 
-	private IEnumerator OpenDoors(Vector2 topEndPosition, Vector2 bottomEndPosition, float time)
+    private IEnumerator OpenDoors(Vector2 topEndPosition, Vector2 bottomEndPosition, float time)
     {
         float elapsedTime = 0;
         while (elapsedTime < time)
         {
-			top.transform.position = Vector2.Lerp(top.transform.position, topEndPosition, elapsedTime / time);
-			bottom.transform.position = Vector2.Lerp(bottom.transform.position, bottomEndPosition, elapsedTime / time);
+            top.transform.position = Vector2.Lerp(top.transform.position, topEndPosition, elapsedTime / time);
+            bottom.transform.position = Vector2.Lerp(bottom.transform.position, bottomEndPosition, elapsedTime / time);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
